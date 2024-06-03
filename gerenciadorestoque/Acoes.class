@@ -1,0 +1,135 @@
+package gerenciadorestoque;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
+
+public class Acoes {
+   private List<Item> estoque = new ArrayList();
+   private List<Fornecedor> fornecedores = new ArrayList();
+   private Scanner scanner;
+
+   public Acoes() {
+      this.scanner = new Scanner(System.in);
+   }
+
+   public void executar() {
+      label73:
+      while(true) {
+         System.out.println("\nGerenciamento de Estoque");
+         System.out.println("1. Cadastrar Item");
+         System.out.println("2. Listar Itens");
+         System.out.println("3. Atualizar Item");
+         System.out.println("4. Cadastrar Fornecedor");
+         System.out.println("5. Listar Fornecedores");
+         System.out.println("0. Sair");
+         int var1 = this.scanner.nextInt();
+         this.scanner.nextLine();
+         Iterator var2;
+         String var9;
+         String var10;
+         switch (var1) {
+            case 0:
+               System.out.println("Saindo do sistema...");
+               System.exit(0);
+            default:
+               System.out.println("Op\u00e7\u00e3o inv\u00e1lida!");
+               break;
+            case 1:
+               System.out.print("C\u00f3digo: ");
+               var9 = this.scanner.nextLine();
+               System.out.print("Nome: ");
+               var10 = this.scanner.nextLine();
+               System.out.print("Quantidade: ");
+               int var13 = this.scanner.nextInt();
+               this.scanner.nextLine();
+               System.out.print("Fornecedor: ");
+               String var14 = this.scanner.nextLine();
+               Fornecedor var6 = null;
+               Iterator var7 = this.fornecedores.iterator();
+
+               while(var7.hasNext()) {
+                  Fornecedor var8 = (Fornecedor)var7.next();
+                  if (var8.nome.equalsIgnoreCase(var14)) {
+                     var6 = var8;
+                     break;
+                  }
+               }
+
+               if (var6 == null) {
+                  System.out.println("Fornecedor n\u00e3o encontrado. Cadastre o fornecedor primeiro.");
+               } else {
+                  Item var15 = new Item(var9, var10, var13, var6);
+                  if (var15.validarCadastro()) {
+                     this.estoque.add(var15);
+                     System.out.println("Item cadastrado com sucesso!");
+                  } else {
+                     System.out.println("Erro ao cadastrar item. Verifique os dados informados.");
+                  }
+               }
+               break;
+            case 2:
+               if (this.estoque.isEmpty()) {
+                  System.out.println("Nenhum item cadastrado.");
+                  break;
+               } else {
+                  System.out.println("\nItens em Estoque:");
+                  var2 = this.estoque.iterator();
+
+                  while(true) {
+                     if (!var2.hasNext()) {
+                        continue label73;
+                     }
+
+                     Item var12 = (Item)var2.next();
+                     System.out.println(var12);
+                  }
+               }
+            case 3:
+               System.out.print("C\u00f3digo do item a atualizar: ");
+               var9 = this.scanner.nextLine();
+               Iterator var11 = this.estoque.iterator();
+
+               while(var11.hasNext()) {
+                  Item var4 = (Item)var11.next();
+                  if (var4.codigo.equals(var9)) {
+                     System.out.print("Nova quantidade: ");
+                     int var5 = this.scanner.nextInt();
+                     this.scanner.nextLine();
+                     var4.quantidade = var5;
+                     System.out.println("Item atualizado com sucesso!");
+                     break;
+                  }
+               }
+
+               if (!this.estoque.stream().anyMatch((var1x) -> {
+                  return var1x.codigo.equals(var9);
+               })) {
+                  System.out.println("Item n\u00e3o encontrado.");
+               }
+               break;
+            case 4:
+               System.out.print("Nome do Fornecedor: ");
+               var9 = this.scanner.nextLine();
+               System.out.print("Contato do Fornecedor: ");
+               var10 = this.scanner.nextLine();
+               this.fornecedores.add(new Fornecedor(var9, var10));
+               System.out.println("Fornecedor cadastrado com sucesso!");
+               break;
+            case 5:
+               if (this.fornecedores.isEmpty()) {
+                  System.out.println("Nenhum fornecedor cadastrado.");
+               } else {
+                  System.out.println("\nFornecedores Cadastrados:");
+                  var2 = this.fornecedores.iterator();
+
+                  while(var2.hasNext()) {
+                     Fornecedor var3 = (Fornecedor)var2.next();
+                     System.out.println(var3);
+                  }
+               }
+         }
+      }
+   }
+}
