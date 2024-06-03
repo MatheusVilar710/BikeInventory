@@ -1,0 +1,18 @@
+package aplicativo;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class Acoes {
+   private List<Item> estoque;
+   private List<Fornecedor> fornecedores;
+   private Scanner scanner;
+
+   public Acoes() {
+      throw new Error("Unresolved compilation problem: \n\tThe declared package \"gerenciadorestoque\" does not match the expected package \"aplicativo\"\n");
+   }
+
+   public void executar() {
+      throw new Error("Unresolved compilation problem: \n");
+   }
+}
