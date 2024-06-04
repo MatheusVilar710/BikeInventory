@@ -1,0 +1,11 @@
+package gerenciadorestoque;
+
+public class Main {
+   public Main() {
+   }
+
+   public static void main(String[] var0) {
+      Acoes var1 = new Acoes();
+      var1.executar();
+   }
+}
