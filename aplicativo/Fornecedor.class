@@ -1,0 +1,14 @@
+package aplicativo;
+
+public class Fornecedor {
+   public String nome;
+   public String contato;
+
+   public Fornecedor(String var1, String var2) {
+      throw new Error("Unresolved compilation problem: \n\tThe declared package \"gerenciadorestoque\" does not match the expected package \"aplicativo\"\n");
+   }
+
+   public String toString() {
+      throw new Error("Unresolved compilation problem: \n");
+   }
+}
