@@ -1,0 +1,23 @@
+package gerenciadorestoque;
+
+public class Item {
+   public String codigo;
+   public String nome;
+   public int quantidade;
+   public Fornecedor fornecedor;
+
+   public Item(String var1, String var2, int var3, Fornecedor var4) {
+      this.codigo = var1;
+      this.nome = var2;
+      this.quantidade = var3;
+      this.fornecedor = var4;
+   }
+
+   public boolean validarCadastro() {
+      return this.codigo != null && !this.codigo.isEmpty() && this.nome != null && !this.nome.isEmpty() && this.quantidade >= 0 && this.fornecedor != null;
+   }
+
+   public String toString() {
+      return "C\u00f3digo: " + this.codigo + ", Nome: " + this.nome + ", Quantidade: " + this.quantidade + ", Fornecedor: " + this.fornecedor.nome;
+   }
+}
